@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EEUAE | Eritrean Ethiopian Union for Academic Excellence</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EF;
+    --bg2: #EDE9E2;
+    --ink: #1A1714;
+    --ink2: #4A4540;
+    --ink3: #8A837A;
+    --g: #2D6A4F;
+    --g2: #40916C;
+    --g3: #D8F3DC;
+    --gold: #C8893A;
+    --gold-l: #FDF0DC;
+    --border: #D8D2C8;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', 'Courier New', monospace;
+    --r: 6px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 300;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 1.35rem;
+    letter-spacing: 0.12em; color: var(--ink);
+    cursor: pointer; user-select: none;
+    display: flex; gap: 1px;
+  }
+  .nav-logo span { transition: color 0.15s; }
+  .nav-logo:hover span { color: var(--g); }
+  .nav-links { display: flex; gap: 0.1rem; align-items: center; }
+  .nav-links button {
+    background: none; border: none; cursor: pointer;
+    font-family: var(--sans); font-size: 0.82rem; font-weight: 500;
+    color: var(--ink2); padding: 0.4rem 0.85rem;
+    border-radius: var(--r); transition: all 0.15s; letter-spacing: 0.02em;
+  }
+  .nav-links button:hover { background: var(--bg2); color: var(--ink); }
+  .nav-links button.active { background: var(--ink); color: var(--bg); }
+
+  /* PAGES */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* =============================================
+     BACKGROUND GRADIENT ANIMATION (from BackgroundGradientAnimation)
+     Hero section animated orbs
+  ============================================= */
+  @keyframes moveVertical {
+    0%   { transform: translateY(-50%); }
+    50%  { transform: translateY(50%); }
+    100% { transform: translateY(-50%); }
+  }
+  @keyframes moveInCircle {
+    0%   { transform: rotate(0deg); }
+    50%  { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes moveHorizontal {
+    0%   { transform: translateX(-50%) translateY(-10%); }
+    50%  { transform: translateX(50%) translateY(10%); }
+    100% { transform: translateX(-50%) translateY(-10%); }
+  }
+
+  .hero {
+    min-height: calc(100vh - 60px);
+    display: grid; place-items: center;
+    padding: 4rem 2rem;
+    position: relative; overflow: hidden;
+    background: linear-gradient(40deg, #eef8f2, #fdfaf3);
+  }
+  .hero-gradient-layer {
+    position: absolute; inset: 0; pointer-events: none;
+    filter: blur(72px); opacity: 0.6;
+  }
+  .hg-1 {
+    position: absolute; width: 72%; height: 72%; top: 14%; left: 14%;
+    background: radial-gradient(circle at center, rgba(45,106,79,0.38) 0%, transparent 65%);
+    animation: moveVertical 20s ease infinite;
+  }
+  .hg-2 {
+    position: absolute; width: 60%; height: 60%; top: 20%; left: 20%;
+    background: radial-gradient(circle at center, rgba(200,137,58,0.25) 0%, transparent 65%);
+    animation: moveInCircle 16s reverse infinite;
+    transform-origin: calc(50% - 240px);
+  }
+  .hg-3 {
+    position: absolute; width: 56%; height: 56%; top: 22%; left: 22%;
+    background: radial-gradient(circle at center, rgba(64,145,108,0.30) 0%, transparent 65%);
+    animation: moveInCircle 26s linear infinite;
+    transform-origin: calc(50% + 240px);
+  }
+  .hg-4 {
+    position: absolute; width: 50%; height: 50%; top: 25%; left: 25%;
+    background: radial-gradient(circle at center, rgba(253,240,220,0.5) 0%, transparent 65%);
+    animation: moveHorizontal 30s ease infinite; opacity: 0.85;
+  }
+  .hero-inner {
+    max-width: 720px; text-align: center; position: relative; z-index: 2;
+  }
+  .hero-kicker {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--g);
+    margin-bottom: 1.5rem;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .hero-kicker::before, .hero-kicker::after {
+    content: ''; display: block; width: 24px; height: 1px; background: var(--g);
+  }
+  .hero-h1 {
+    font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.12; letter-spacing: -0.01em;
+    color: var(--ink); margin-bottom: 1.4rem;
+  }
+  .hero-h1 em { font-style: italic; color: var(--g); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--ink2); max-width: 520px;
+    margin: 0 auto 2.5rem; line-height: 1.7;
+  }
+  .hero-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.7rem 1.4rem; border-radius: var(--r);
+    font-family: var(--sans); font-size: 0.88rem; font-weight: 500;
+    cursor: pointer; border: none; transition: all 0.18s;
+    text-decoration: none;
+  }
+  .btn-primary { background: var(--ink); color: var(--bg); }
+  .btn-primary:hover { background: var(--g); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+  .btn-outline:hover { border-color: var(--ink); background: var(--bg2); }
+
+  /* SCHOLARSHIP FAB */
+  .scholarship-fab {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    z-index: 500; background: var(--g); color: white;
+    border: none; cursor: pointer;
+    font-family: var(--sans); font-size: 0.88rem; font-weight: 600;
+    padding: 0.85rem 1.8rem; border-radius: 2rem;
+    box-shadow: 0 4px 20px rgba(45,106,79,0.35);
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: all 0.2s; letter-spacing: 0.02em; white-space: nowrap;
+  }
+  .scholarship-fab:hover {
+    background: var(--g2); transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 8px 28px rgba(45,106,79,0.4);
+  }
+
+  /* HOME SECTIONS */
+  .section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+  .section-label {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--g); margin-bottom: 0.6rem;
+  }
+  .section-h2 {
+    font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.2; margin-bottom: 1rem; color: var(--ink);
+  }
+  .section-h2 em { font-style: italic; color: var(--g); }
+  .section-sub {
+    color: var(--ink2); max-width: 540px; line-height: 1.7; margin-bottom: 2.5rem;
+  }
+
+  /* STATS */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem; margin-bottom: 4rem;
+  }
+  .stat-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--r);
+    padding: 1.5rem; text-align: center;
+  }
+  .stat-n {
+    font-family: var(--serif); font-size: 2.4rem; color: var(--g);
+    line-height: 1; margin-bottom: 0.3rem;
+  }
+  .stat-l { font-size: 0.8rem; color: var(--ink3); font-weight: 500; }
+
+  /* =============================================
+     SHINE BORDER (from ShineBorder)
+     Feature cards with animated shine on hover
+  ============================================= */
+  @keyframes shine {
+    0%   { background-position: 0% 0%; }
+    50%  { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+  }
+  .feature-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .feature-card {
+    background: white; border-radius: var(--r);
+    padding: 2rem; cursor: pointer;
+    position: relative; overflow: hidden;
+    border: 1px solid transparent;
+    transition: box-shadow 0.25s, transform 0.2s;
+  }
+  /* Subtle resting border */
+  .feature-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  /* Shine pseudo-element */
+  .feature-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: var(--r);
+    padding: 1.5px;
+    background: radial-gradient(transparent, transparent, #2D6A4F, #C8893A, transparent, transparent);
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: shine 5s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .feature-card:hover::before { opacity: 1; }
+  .feature-card:hover::after { opacity: 0; }
+  .feature-card:hover {
+    box-shadow: 0 6px 28px rgba(45,106,79,0.13);
+    transform: translateY(-2px);
+  }
+  .feature-card > * { position: relative; z-index: 1; }
+  .feature-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--g3); display: grid; place-items: center;
+    font-size: 1.2rem; margin-bottom: 1rem;
+  }
+  .feature-title { font-weight: 600; margin-bottom: 0.4rem; }
+  .feature-desc { font-size: 0.88rem; color: var(--ink2); line-height: 1.6; }
+
+  /* HOME TEAM GRID */
+  #home-team-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem; margin-bottom: 1.5rem;
+  }
+
+  /* PAGE HEADER */
+  .page-header {
+    background: white; border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem 2rem;
+  }
+  .page-header-inner { max-width: 1080px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.8rem);
+    margin-bottom: 0.5rem;
+  }
+  .page-desc { color: var(--ink2); max-width: 500px; }
+
+  /* =============================================
+     GALLERY4 CAROUSEL (from Gallery4)
+     Featured articles horizontal scroll carousel
+  ============================================= */
+  .pub-carousel-wrap {
+    background: white; border-bottom: 1px solid var(--border);
+    padding: 3rem 0 2.5rem;
+  }
+  .pub-carousel-header {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 0 2rem; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .pub-carousel-title {
+    font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+    line-height: 1.15; color: var(--ink);
+  }
+  .pub-carousel-desc { font-size: 0.88rem; color: var(--ink3); max-width: 380px; margin-top: 0.3rem; }
+  .pub-carousel-nav { display: flex; gap: 0.5rem; flex-shrink: 0; }
+  .carousel-nav-btn {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--bg2); border: 1px solid var(--border);
+    cursor: pointer; display: grid; place-items: center;
+    font-size: 1.1rem; color: var(--ink2);
+    transition: all 0.15s;
+  }
+  .carousel-nav-btn:hover:not(:disabled) { background: var(--ink); color: white; border-color: var(--ink); }
+  .carousel-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .pub-carousel-viewport { overflow: hidden; width: 100%; }
+  .pub-carousel-track {
+    display: flex;
+    will-change: transform;
+    transition: transform 0.48s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding-left: max(2rem, calc(50vw - 530px));
+    padding-right: 2rem;
+  }
+  .pub-carousel-slide {
+    flex: 0 0 320px; max-width: 320px; padding-right: 20px;
+  }
+  @media(min-width: 1024px) { .pub-carousel-slide { flex: 0 0 360px; max-width: 360px; } }
+  .pub-carousel-card {
+    display: block; text-decoration: none; border-radius: 12px;
+    overflow: hidden; position: relative; height: 430px;
+    cursor: pointer;
+  }
+  .pub-carousel-card img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 0.38s ease;
+  }
+  .pub-carousel-card:hover img { transform: scale(1.06); }
+  .pub-carousel-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(26,23,20,0) 25%,
+      rgba(26,23,20,0.5) 60%,
+      rgba(26,23,20,0.88) 100%);
+  }
+  .pub-carousel-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1.75rem; color: white;
+  }
+  .pub-carousel-cat {
+    font-family: var(--mono); font-size: 0.63rem; letter-spacing: 0.1em;
+    text-transform: uppercase; background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 0.18rem 0.5rem; border-radius: 3px;
+    display: inline-block; margin-bottom: 0.65rem;
+  }
+  .pub-carousel-card-title {
+    font-family: var(--serif); font-size: 1.1rem; line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .pub-carousel-card-desc {
+    font-size: 0.8rem; opacity: 0.8; line-height: 1.55;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; margin-bottom: 1rem;
+  }
+  .pub-carousel-read {
+    font-size: 0.78rem; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 0.3rem;
+  }
+  .pub-carousel-read .arrow { display: inline-block; transition: transform 0.2s; }
+  .pub-carousel-card:hover .pub-carousel-read .arrow { transform: translateX(4px); }
+  .carousel-dots {
+    display: flex; justify-content: center; gap: 6px;
+    margin-top: 1.5rem; padding: 0 2rem;
+  }
+  .carousel-dot {
+    height: 7px; width: 7px; border-radius: 4px;
+    background: var(--border); border: none; cursor: pointer;
+    transition: background 0.2s, width 0.25s; padding: 0;
+  }
+  .carousel-dot.active { background: var(--g); width: 22px; }
+
+  /* PUB CONTROLS + GRID */
+  .pub-controls {
+    background: var(--bg2); border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+  }
+  .pub-controls-inner {
+    max-width: 1080px; margin: 0 auto; width: 100%;
+    display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+  }
+  .search-input {
+    flex: 1; min-width: 200px;
+    background: white; border: 1px solid var(--border); border-radius: var(--r);
+    padding: 0.55rem 0.9rem; font-family: var(--sans); font-size: 0.88rem;
+    color: var(--ink); outline: none;
+  }
+  .search-input:focus { border-color: var(--g); }
+  .filter-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .chip {
+    background: white; border: 1.5px solid var(--border); border-radius: 2rem;
+    padding: 0.3rem 0.85rem; font-size: 0.78rem; font-weight: 500;
+    cursor: pointer; transition: all 0.15s; color: var(--ink2);
+  }
+  .chip.active { background: var(--ink); border-color: var(--ink); color: white; }
+  .chip:hover:not(.active) { border-color: var(--g); color: var(--g); }
+  .articles-section { padding: 2rem; }
+  .articles-inner { max-width: 1080px; margin: 0 auto; }
+  .articles-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+  .article-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--r);
+    padding: 1.75rem; cursor: pointer;
+    transition: all 0.18s; display: flex; flex-direction: column;
+  }
+  .article-card:hover { border-color: var(--g); box-shadow: 0 4px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  .article-cat {
+    display: inline-block; font-family: var(--mono); font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem;
+    border-radius: 3px; margin-bottom: 0.9rem; font-weight: 500;
+  }
+  .cat-college { background: #E0F0FF; color: #1565C0; }
+  .cat-career { background: #FFF3E0; color: #E65100; }
+  .cat-academic { background: var(--g3); color: var(--g); }
+  .cat-student { background: #F3E5F5; color: #6A1B9A; }
+  .cat-cultural { background: #FCE4EC; color: #AD1457; }
+  .article-title { font-family: var(--serif); font-size: 1.2rem; line-height: 1.3; margin-bottom: 0.65rem; }
+  .article-excerpt { font-size: 0.86rem; color: var(--ink2); line-height: 1.65; flex: 1; margin-bottom: 1rem; }
+  .article-meta { display: flex; justify-content: space-between; align-items: center; }
+  .article-author { font-size: 0.78rem; font-weight: 600; color: var(--ink); }
+  .article-date { font-family: var(--mono); font-size: 0.72rem; color: var(--ink3); }
+  .no-results { grid-column: 1/-1; padding: 4rem; text-align: center; color: var(--ink3); font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+  .project-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--r);
+    padding: 1.75rem; transition: all 0.18s;
+  }
+  .project-card:hover { border-color: var(--g); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .project-status {
+    display: inline-block; font-family: var(--mono); font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem;
+    border-radius: 3px; margin-bottom: 1rem;
+  }
+  .status-Completed { background: var(--g3); color: var(--g); }
+  .status-Ongoing { background: #FFF3E0; color: #E65100; }
+  .status-Upcoming { background: #E8EAF6; color: #3949AB; }
+  .project-title { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .project-sub { font-size: 0.88rem; color: var(--ink2); margin-bottom: 1rem; line-height: 1.6; }
+  .project-detail { font-size: 0.82rem; color: var(--ink3); margin-bottom: 0.3rem; line-height: 1.6; }
+  .project-detail strong { color: var(--ink2); }
+
+  /* COMPETITIONS */
+  .comps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+  .comp-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--r);
+    padding: 1.75rem; transition: all 0.18s;
+  }
+  .comp-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(200,137,58,0.1); }
+  .comp-type { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .comp-title { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .comp-desc { font-size: 0.87rem; color: var(--ink2); line-height: 1.65; margin-bottom: 1rem; }
+  .comp-prize { font-family: var(--mono); font-size: 0.8rem; color: var(--g); font-weight: 500; }
+
+  /* =============================================
+     RADIAL ORBITAL TIMELINE (from RadialOrbitalTimeline)
+     Team page: dark orbital visualization + list
+  ============================================= */
+  @keyframes orb-ping {
+    0%   { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.7); opacity: 0; }
+  }
+  @keyframes orb-pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+    50%      { box-shadow: 0 0 0 8px rgba(255,255,255,0.0); }
+  }
+  @keyframes spin-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .team-split {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 240px);
+  }
+  @media(max-width: 760px) { .team-split { grid-template-columns: 1fr; } }
+
+  .orbital-section {
+    background: #0d0c0a;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 560px;
+  }
+  .orbital-wrap {
+    position: relative;
+    width: 480px; height: 480px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .orbital-ring {
+    position: absolute;
+    width: 400px; height: 400px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.09);
+    pointer-events: none;
+  }
+  .orbital-ring-outer {
+    position: absolute;
+    width: 450px; height: 450px; border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.04);
+    pointer-events: none;
+    animation: spin-slow 60s linear infinite;
+  }
+  .orbital-center {
+    position: absolute; z-index: 10;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, #2D6A4F 0%, #C8893A 60%, #40916C 100%);
+    display: flex; align-items: center; justify-content: center;
+    cursor: default;
+  }
+  .orbital-center-inner {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: rgba(247,244,239,0.9);
+  }
+  .orbital-center::after {
+    content: '';
+    position: absolute; width: 70px; height: 70px;
+    border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+    animation: orb-ping 2.2s ease-out infinite;
+  }
+
+  .orbital-node {
+    position: absolute; cursor: pointer;
+    transition: all 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 5;
+  }
+  .orbital-node-dot {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: #181614; border: 2px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-family: var(--serif); font-size: 0.9rem;
+    transition: all 0.3s; user-select: none;
+  }
+  .orbital-node.active .orbital-node-dot {
+    background: white; color: #0d0c0a;
+    border-color: white; transform: scale(1.45);
+    box-shadow: 0 0 22px rgba(255,255,255,0.28);
+  }
+  .orbital-node.related .orbital-node-dot {
+    background: rgba(255,255,255,0.2); border-color: white;
+    animation: orb-pulse 1.3s ease infinite;
+  }
+  .orbital-node-label {
+    position: absolute; top: 50px; left: 50%; transform: translateX(-50%);
+    white-space: nowrap; font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.05em; color: rgba(255,255,255,0.55);
+    transition: all 0.3s; text-align: center; pointer-events: none;
+  }
+  .orbital-node.active .orbital-node-label {
+    color: rgba(255,255,255,0.9); transform: translateX(-50%) scale(1.1);
+  }
+  .orbital-info-card {
+    position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    width: 240px;
+    background: rgba(13,12,10,0.96);
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;
+    padding: 1rem 1.1rem; color: white; z-index: 50;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .orbital-info-card.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(6px); }
+  .orbital-info-role {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.3rem;
+  }
+  .orbital-info-name { font-family: var(--serif); font-size: 1.05rem; line-height: 1.2; }
+  .orbital-hint {
+    position: absolute; top: 1.2rem; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.25);
+    white-space: nowrap;
+  }
+
+  .team-list-side {
+    background: var(--bg); padding: 2.5rem 2rem;
+    border-left: 1px solid var(--border); overflow-y: auto;
+  }
+  .team-list-heading {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--g); margin-bottom: 1.25rem;
+  }
+  .team-list-item {
+    display: flex; align-items: center; gap: 0.9rem;
+    padding: 0.8rem 1rem; border-radius: var(--r);
+    cursor: pointer; transition: background 0.15s; margin-bottom: 0.2rem;
+  }
+  .team-list-item:hover { background: var(--bg2); }
+  .team-list-item.highlighted { background: var(--g3); }
+  .team-list-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--bg2); border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 0.82rem; color: var(--g);
+    flex-shrink: 0; transition: all 0.15s;
+  }
+  .team-list-item.highlighted .team-list-avatar { background: var(--g); color: white; border-color: var(--g); }
+  .team-list-name { font-weight: 600; font-size: 0.9rem; }
+  .team-list-role { font-size: 0.78rem; color: var(--ink3); }
+
+  /* Team card fallback (home grid) */
+  .team-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--r);
+    padding: 1.5rem; text-align: center; transition: all 0.18s;
+  }
+  .team-card:hover { border-color: var(--g); }
+  .team-avatar {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--g3);
+    display: grid; place-items: center;
+    font-family: var(--serif); font-size: 1.1rem; color: var(--g);
+    margin: 0 auto 0.75rem; border: 2px solid var(--border);
+  }
+  .team-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .team-role { font-size: 0.78rem; color: var(--ink3); }
+
+  /* SCHOLARSHIPS */
+  .scholarships-header {
+    background: var(--g); color: white;
+    padding: 3rem 2rem 2rem;
+  }
+  .sch-header-inner { max-width: 1080px; margin: 0 auto; }
+  .sch-back {
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+    color: white; border-radius: var(--r); padding: 0.4rem 0.9rem;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer; margin-bottom: 1.5rem;
+    display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--sans);
+    transition: background 0.15s;
+  }
+  .sch-back:hover { background: rgba(255,255,255,0.25); }
+  .sch-title { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.8rem); margin-bottom: 0.5rem; }
+  .sch-desc { opacity: 0.85; max-width: 540px; }
+  .sch-stats-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem; background: white; border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+  }
+  .sch-stat { text-align: center; }
+  .sch-stat-n { font-family: var(--serif); font-size: 1.8rem; color: var(--g); }
+  .sch-stat-l { font-size: 0.78rem; color: var(--ink3); font-weight: 500; margin-top: 0.15rem; }
+  .sch-controls { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 1rem 2rem; }
+  .sch-controls-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+  }
+  .sch-sort {
+    background: white; border: 1px solid var(--border); border-radius: var(--r);
+    padding: 0.55rem 0.9rem; font-family: var(--sans); font-size: 0.85rem;
+    color: var(--ink); cursor: pointer; outline: none;
+  }
+  .sch-section { padding: 2rem; }
+  .sch-inner { max-width: 1080px; margin: 0 auto; }
+  .sch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+  .sch-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--r);
+    padding: 1.75rem; display: flex; flex-direction: column; transition: all 0.18s;
+  }
+  .sch-card:hover { border-color: var(--g); box-shadow: 0 4px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  .sch-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .sch-source-badge {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 3px;
+  }
+  .badge-scholarships { background: #E3F2FD; color: #1565C0; }
+  .badge-fastweb { background: #FFF3E0; color: #E65100; }
+  .badge-niche { background: #F3E5F5; color: #6A1B9A; }
+  .badge-curated { background: var(--g3); color: var(--g); }
+  .sch-grade-badge { font-family: var(--mono); font-size: 0.65rem; padding: 0.18rem 0.5rem; border-radius: 3px; background: var(--gold-l); color: #7A5200; }
+  .sch-amount-badge { font-family: var(--mono); font-size: 0.65rem; padding: 0.18rem 0.5rem; border-radius: 3px; background: #E8F5E9; color: #1B5E20; }
+  .sch-card-title { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.5rem; line-height: 1.3; }
+  .sch-card-desc { font-size: 0.85rem; color: var(--ink2); line-height: 1.6; flex: 1; margin-bottom: 1rem; }
+  .sch-card-footer { display: flex; justify-content: space-between; align-items: center; }
+  .sch-card-date { font-family: var(--mono); font-size: 0.72rem; color: var(--ink3); }
+  .sch-link {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-size: 0.82rem; font-weight: 600; color: var(--g); text-decoration: none;
+    border: 1.5px solid var(--g3); border-radius: var(--r);
+    padding: 0.35rem 0.7rem; transition: all 0.15s;
+  }
+  .sch-link:hover { background: var(--g); color: white; border-color: var(--g); }
+  .sch-loading, .sch-empty {
+    grid-column: 1/-1; text-align: center; padding: 4rem 2rem;
+    color: var(--ink3); font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em;
+  }
+  @keyframes dots {
+    0%,20%{content:''} 40%{content:'.'} 60%{content:'..'} 80%,100%{content:'...'}
+  }
+  .loading-dots::after { content: ''; animation: dots 1.5s steps(4, end) infinite; }
+  .refresh-row {
+    text-align: right; margin-bottom: 1rem;
+    font-family: var(--mono); font-size: 0.72rem; color: var(--ink3);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .refresh-btn {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 0.3rem 0.7rem; font-size: 0.78rem; cursor: pointer; font-family: var(--sans);
+    color: var(--ink2); transition: all 0.15s;
+  }
+  .refresh-btn:hover { background: var(--g3); border-color: var(--g); color: var(--g); }
+
+  /* MODAL */
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(26,23,20,0.6); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--bg); border-radius: 10px; max-width: 680px; width: 100%;
+    max-height: 88vh; overflow-y: auto;
+    padding: 2.5rem; position: relative;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: var(--bg2); border: none; border-radius: 50%;
+    width: 32px; height: 32px; cursor: pointer; font-size: 0.9rem;
+    display: grid; place-items: center; color: var(--ink2); transition: background 0.15s;
+  }
+  .modal-close:hover { background: var(--border); }
+  .modal-cat { margin-bottom: 0.75rem; }
+  .modal-title { font-family: var(--serif); font-size: 1.7rem; line-height: 1.2; margin-bottom: 0.75rem; }
+  .modal-meta { font-size: 0.82rem; color: var(--ink3); margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .modal-langs { display: flex; gap: 0.5rem; padding-bottom: 1.25rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .lang-btn {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 0.35rem 0.8rem; font-size: 0.8rem; cursor: pointer; font-family: var(--sans);
+    color: var(--ink2); transition: all 0.15s;
+  }
+  .lang-btn.active { background: var(--g); border-color: var(--g); color: white; }
+  .modal-body { font-size: 0.93rem; line-height: 1.75; color: var(--ink2); white-space: pre-wrap; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: var(--bg); margin-top: 5rem;
+    padding: 3rem 2rem 0;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 2rem;
+  }
+  @media(max-width: 720px) { footer { grid-template-columns: 1fr 1fr; } }
+  @media(max-width: 480px) { footer { grid-template-columns: 1fr; } }
+  .footer-logo { font-family: var(--serif); font-size: 1.4rem; letter-spacing: 0.15em; margin-bottom: 0.75rem; cursor: pointer; }
+  .footer-tagline { font-size: 0.84rem; opacity: 0.65; line-height: 1.6; margin-bottom: 0.5rem; }
+  .footer-legal { font-family: var(--mono); font-size: 0.7rem; opacity: 0.45; margin-top: 0.5rem; }
+  .footer-heading { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; margin-bottom: 1rem; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.5rem; }
+  .footer-links a { font-size: 0.88rem; opacity: 0.8; cursor: pointer; text-decoration: none; color: inherit; transition: opacity 0.15s; }
+  .footer-links a:hover { opacity: 1; }
+  .footer-email-row { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+  .footer-email-input {
+    flex: 1; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--r); padding: 0.5rem 0.75rem;
+    font-family: var(--sans); font-size: 0.85rem; color: white; outline: none;
+  }
+  .footer-email-input::placeholder { opacity: 0.5; }
+  .footer-email-input:focus { border-color: rgba(255,255,255,0.4); }
+  .footer-sub-btn {
+    background: var(--g); border: none; border-radius: var(--r);
+    padding: 0.5rem 1rem; color: white; font-family: var(--sans);
+    font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.15s;
+  }
+  .footer-sub-btn:hover { background: var(--g2); }
+  .footer-bottom {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 1rem 2rem; display: flex; justify-content: space-between;
+    align-items: center; font-size: 0.78rem; opacity: 0.5; margin-top: 2rem; color: var(--bg);
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 2000;
+    background: var(--ink); color: var(--bg);
+    padding: 0.7rem 1.2rem; border-radius: var(--r);
+    font-size: 0.85rem; font-weight: 500;
+    transform: translateY(2rem); opacity: 0; transition: all 0.25s; pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <span>E</span><span>E</span><span>U</span><span>A</span><span>E</span>
+  </div>
+  <div class="nav-links">
+    <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
+    <button onclick="showPage('publications')" id="nav-publications">Publications</button>
+    <button onclick="showPage('projects')" id="nav-projects">Projects</button>
+    <button onclick="showPage('competitions')" id="nav-competitions">Competitions</button>
+    <button onclick="showPage('team')" id="nav-team">Team</button>
+    <button onclick="showPage('scholarships')" id="nav-scholarships">🎓 Scholarships</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-gradient-layer" aria-hidden="true">
+      <div class="hg-1"></div>
+      <div class="hg-2"></div>
+      <div class="hg-3"></div>
+      <div class="hg-4"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-kicker">Eritrean &amp; Ethiopian Students</div>
+      <h1 class="hero-h1">Excellence is<br><em>community.</em></h1>
+      <p class="hero-sub">EEUAE is a student-led nonprofit supporting first-generation Eritrean and Ethiopian students through publications, resources, mentorship, and opportunity.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="showPage('publications')">Read Publications</button>
+        <button class="btn btn-outline" onclick="showPage('projects')">Our Projects</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: white; border-top: 1px solid var(--border);">
+    <div class="section-inner">
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-n">17</div><div class="stat-l">Publications</div></div>
+        <div class="stat-card"><div class="stat-n">2</div><div class="stat-l">Programs Run</div></div>
+        <div class="stat-card"><div class="stat-n">501(c)(3)</div><div class="stat-l">Registered Nonprofit</div></div>
+        <div class="stat-card"><div class="stat-n">3</div><div class="stat-l">Languages</div></div>
+      </div>
+      <div class="section-label">What we do</div>
+      <h2 class="section-h2">Resources built <em>by</em> and <em>for</em> our community</h2>
+      <p class="section-sub">From college prep guides in Amharic and Tigrinya, to scholarship databases and career workshops. Everything EEUAE builds is free and student-led.</p>
+      <div class="feature-grid">
+        <div class="feature-card" onclick="showPage('publications')">
+          <div class="feature-icon">📖</div>
+          <div class="feature-title">Publication Co.</div>
+          <div class="feature-desc">Student-written articles on college prep, career development, academic success, and cultural identity. Available in English, Amharic, and Tigrinya.</div>
+        </div>
+        <div class="feature-card" onclick="showPage('scholarships')">
+          <div class="feature-icon">🎓</div>
+          <div class="feature-title">Scholarship Feed</div>
+          <div class="feature-desc">Live scholarship listings for high school students in grades 9 to 12, updated automatically from top scholarship databases every 60 minutes.</div>
+        </div>
+        <div class="feature-card" onclick="showPage('projects')">
+          <div class="feature-icon">🚀</div>
+          <div class="feature-title">Programs</div>
+          <div class="feature-desc">From the Spring Sprint bootcamp to the Habesha Voices Series. We run free programs that reach students where they are.</div>
+        </div>
+        <div class="feature-card" onclick="showPage('competitions')">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">Competitions</div>
+          <div class="feature-desc">STEM challenges, writing awards, and pitch competitions designed to highlight excellence in our own community.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">Team</div>
+      <h2 class="section-h2">Led by students, <em>for students</em></h2>
+      <p class="section-sub">Every person building EEUAE is a student who understands the road firsthand.</p>
+      <div id="home-team-grid"></div>
+      <button class="btn btn-outline" onclick="showPage('team')">Meet the full team</button>
+    </div>
+  </section>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="page" id="page-publications">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label">Publication Co.</div>
+      <h1 class="page-title">Student Voices</h1>
+      <p class="page-desc">Articles written by students, for students. College prep, career development, academic success, and cultural identity.</p>
+    </div>
+  </div>
+
+  <!-- Gallery4 Carousel for featured articles -->
+  <div class="pub-carousel-wrap">
+    <div class="pub-carousel-header">
+      <div>
+        <div class="pub-carousel-title">Featured Articles</div>
+        <div class="pub-carousel-desc">Highlighted reads from our student writers, available in multiple languages.</div>
+      </div>
+      <div class="pub-carousel-nav">
+        <button class="carousel-nav-btn" id="carousel-prev" onclick="carouselPrev()" disabled>&#8592;</button>
+        <button class="carousel-nav-btn" id="carousel-next" onclick="carouselNext()">&#8594;</button>
+      </div>
+    </div>
+    <div class="pub-carousel-viewport">
+      <div class="pub-carousel-track" id="carousel-track"></div>
+    </div>
+    <div class="carousel-dots" id="carousel-dots"></div>
+  </div>
+
+  <div class="pub-controls">
+    <div class="pub-controls-inner">
+      <input class="search-input" id="pub-search" type="text" placeholder="Search articles..." oninput="renderArticles()">
+      <div class="filter-chips">
+        <span class="chip active" onclick="setFilter(this,'all')">All</span>
+        <span class="chip" onclick="setFilter(this,'College Prep')">College Prep</span>
+        <span class="chip" onclick="setFilter(this,'Career Development')">Career</span>
+        <span class="chip" onclick="setFilter(this,'Academic Success')">Academic</span>
+        <span class="chip" onclick="setFilter(this,'Cultural Pride')">Cultural</span>
+        <span class="chip" onclick="setFilter(this,'Student Life')">Student Life</span>
+      </div>
+    </div>
+  </div>
+  <div class="articles-section">
+    <div class="articles-inner">
+      <div class="articles-grid" id="articles-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="page" id="page-projects">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label">Programs</div>
+      <h1 class="page-title">What We've Built</h1>
+      <p class="page-desc">Free programs designed to support first-generation Eritrean and Ethiopian students through every stage of their academic journey.</p>
+    </div>
+  </div>
+  <div class="articles-section">
+    <div class="articles-inner">
+      <div class="projects-grid" id="projects-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPETITIONS -->
+<div class="page" id="page-competitions">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label">Competitions &amp; Awards</div>
+      <h1 class="page-title">Show Your Excellence</h1>
+      <p class="page-desc">EEUAE-hosted competitions and real external opportunities for first-gen students ready to stand out.</p>
+    </div>
+  </div>
+  <div class="articles-section">
+    <div class="articles-inner">
+      <div class="comps-grid" id="comps-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM (Radial Orbital Timeline) -->
+<div class="page" id="page-team">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label">The People</div>
+      <h1 class="page-title">Our Team</h1>
+      <p class="page-desc">Students leading for students. Every EEUAE team member is a first-generation learner who has been in your shoes.</p>
+    </div>
+  </div>
+  <div class="team-split">
+    <!-- Orbital visualization -->
+    <div class="orbital-section">
+      <div class="orbital-hint">tap a node to explore</div>
+      <div class="orbital-wrap" id="orbital-wrap">
+        <div class="orbital-ring-outer"></div>
+        <div class="orbital-ring"></div>
+        <div class="orbital-center"><div class="orbital-center-inner"></div></div>
+        <!-- nodes injected by JS -->
+      </div>
+      <div class="orbital-info-card hidden" id="orbital-card">
+        <div class="orbital-info-role" id="orbital-card-role"></div>
+        <div class="orbital-info-name" id="orbital-card-name"></div>
+      </div>
+    </div>
+    <!-- List side -->
+    <div class="team-list-side">
+      <div class="team-list-heading">All Team Members</div>
+      <div id="team-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCHOLARSHIPS -->
+<div class="page" id="page-scholarships">
+  <div class="scholarships-header">
+    <div class="sch-header-inner">
+      <button class="sch-back" onclick="showPage('home')">&#8592; Back to Home</button>
+      <div class="sch-title">Scholarship Feed</div>
+      <div class="sch-desc">Live listings for high school students in grades 9 to 12. Updated from top scholarship databases and auto-refreshed every 60 minutes.</div>
+    </div>
+  </div>
+  <div class="sch-stats-row" id="sch-stats">
+    <div class="sch-stat"><div class="sch-stat-n" id="stat-total">...</div><div class="sch-stat-l">Total Found</div></div>
+    <div class="sch-stat"><div class="sch-stat-n" id="stat-showing">...</div><div class="sch-stat-l">Currently Showing</div></div>
+    <div class="sch-stat"><div class="sch-stat-n" id="stat-sources">...</div><div class="sch-stat-l">Sources Active</div></div>
+    <div class="sch-stat"><div class="sch-stat-n" id="stat-refreshed">...</div><div class="sch-stat-l">Last Refreshed</div></div>
+  </div>
+  <div class="sch-controls">
+    <div class="sch-controls-inner">
+      <input class="search-input" id="sch-search" type="text" placeholder="Search scholarships..." oninput="filterScholarships()">
+      <div class="filter-chips" id="grade-chips">
+        <span class="chip active" onclick="setGradeFilter(this,'All')">All Grades</span>
+        <span class="chip" onclick="setGradeFilter(this,'9th')">9th</span>
+        <span class="chip" onclick="setGradeFilter(this,'10th')">10th</span>
+        <span class="chip" onclick="setGradeFilter(this,'11th')">11th</span>
+        <span class="chip" onclick="setGradeFilter(this,'12th')">12th</span>
+      </div>
+      <select class="sch-sort" id="sch-sort" onchange="filterScholarships()">
+        <option value="newest">Newest First</option>
+        <option value="az">A to Z</option>
+      </select>
+    </div>
+  </div>
+  <div class="sch-section">
+    <div class="sch-inner">
+      <div class="refresh-row">
+        <span id="sch-status-msg" style="font-family:var(--mono);font-size:0.72rem;color:var(--ink3);">Loading...</span>
+        <button class="refresh-btn" onclick="loadScholarships(true)">&#8635; Refresh now</button>
+      </div>
+      <div class="sch-grid" id="sch-grid">
+        <div class="sch-loading">Fetching scholarships<span class="loading-dots"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE MODAL -->
+<div class="modal-backdrop" id="article-modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('article-modal').classList.remove('open')">&#x2715;</button>
+    <div class="modal-cat" id="modal-cat"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-meta" id="modal-meta"></div>
+    <div class="modal-langs" id="modal-langs"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- FLOATING SCHOLARSHIP BUTTON -->
+<button class="scholarship-fab" onclick="showPage('scholarships')" id="scholarship-fab">
+  🎓 Find Scholarships
+</button>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo" onclick="showPage('home')">EEUAE</div>
+    <div class="footer-tagline">Empowering first-generation Eritrean and Ethiopian students through excellence, community, and culture.</div>
+    <div class="footer-legal">Registered 501(c)(3) Nonprofit · EIN: 41-3257810</div>
+  </div>
+  <div>
+    <div class="footer-heading">Navigate</div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">Home</a></li>
+      <li><a onclick="showPage('publications')">Publications</a></li>
+      <li><a onclick="showPage('projects')">Projects</a></li>
+      <li><a onclick="showPage('scholarships')">Scholarships</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-heading">Connect</div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('team')">Our Team</a></li>
+      <li><a href="mailto:hello@eeuae.org">Email Us</a></li>
+      <li><a href="#" target="_blank">LinkedIn</a></li>
+      <li><a href="#" target="_blank">Instagram</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-heading">Newsletter</div>
+    <div class="footer-tagline" style="font-size:0.82rem">Stay updated on publications, competitions, and community news.</div>
+    <div class="footer-email-row">
+      <input class="footer-email-input" id="footer-email" type="email" placeholder="your@email.com">
+      <button class="footer-sub-btn" onclick="footerSubscribe()">Join</button>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>&#169; 2026 EEUAE. All rights reserved.</span>
+  <span>Eritrean Ethiopian Union for Academic Excellence</span>
+</div>
+
+<script>
+// ==============================================
+// DATA
+// ==============================================
+
+const articles = [
+  {
+    id:1, title:'How to Spend the Summer Before Senior Year to Best Prepare for College Applications',
+    category:'College Prep', author:'Haleluya Tesfamariam', date:'Apr 2026',
+    excerpt:'The summer before senior year is your most valuable window to get ahead on college applications. Here is how to use it wisely.',
+    views:1, published:true, featured:true,
+    content_en:`The Summer Before Senior Year Is Everything
+
+Most students spend the summer before senior year relaxing or waiting for school to start. That is understandable. But the students who use this summer intentionally arrive at fall with a real advantage. Not because they worked harder, but because they worked earlier.
+
+Step 1: Build Your College List
+Aim for 10 to 14 schools across three tiers: Reach (3-4), Match (4-6), and Likely (3-4). Research acceptance rates, average GPA, financial aid reputation, and first-gen support programs.
+
+Step 2: Draft Your Common App Essay
+The Common App essay is 650 words and it is the most personal thing you will submit. Start it this summer. Read the prompts. Brainstorm 5 to 7 possible topics. Write a rough draft, messy and honest, in your voice. Revise. Then revise again.
+
+Step 3: Request Letters of Recommendation Early
+Most teachers get flooded with requests in September. If you ask in June or July, you will get a better letter because your teacher has time to actually write it.
+
+Step 4: Understand the Financial Aid Process
+The FAFSA opens October 1st of your senior year. Fill it out as early as possible. Some schools also require the CSS Profile. Net price calculators on each school's website give you a realistic estimate before you apply.
+
+Step 5: Build Your Activities List
+The Common App gives you 10 activity slots. Use the summer to draft descriptions for everything meaningful you have done: jobs, volunteering, family responsibilities, cultural involvement, sports, music.
+
+Step 6: If You Are Testing, Test Smart
+SAT or ACT prep over 6 to 8 weeks with a consistent schedule can meaningfully improve your score. Use free resources. Khan Academy's SAT prep is excellent and completely free.
+
+The gap between students who are prepared and students who are not is almost never about intelligence. It is about information and timing. You now have both.`,
+    content_am:`ከ12ኛ ክፍል በፊት ያለው በጋ ሁሉም ነገር ነው
+
+ብዙ ተማሪዎች ይህን ጊዜ ለማረፍ ወይም ትምህርት ቤት እስኪጀምር ለመጠበቅ ይጠቀሙበታል። ይህ ሊረዳ ይችላል። ግን እውነቱ ይሄ ነው: ይህን ጊዜ ሆን ብለው የሚጠቀሙ ተማሪዎች ጥቅም ያላቸው ሆነው ይምጣሉ።
+
+ደረጃ 1: የኮሌጅ ዝርዝርህን ስራ. ደረጃ 2: Common App Essay-ዎ ጻፉ. ደረጃ 3: የምክር ደብዳቤ ቀደም ብሎ ጠይቁ. ደረጃ 4: Financial Aid ሂደቱን ተረዱ. ደረጃ 5: የእንቅስቃሴ ዝርዝርዎን ስሩ.
+
+ዝግጁ እና ዝግጁ ያልሆኑ ተማሪዎች ክፍተት ፈጽሞ ስለ ብልህነት አይደለም። ስለ መረጃ እና ጊዜ ነው። አሁን ሁለቱም አላቸሁ።`,
+    content_ti:`ቀውዒ ቅድሚ 12ይ ክፍሊ ዘሎ ዓቢ ኣጋጣሚ ኢዩ
+
+ስጉምቲ 1: ናይ ኮሌጅ ዝርዝርኩም ስርሑ. ስጉምቲ 2: Common App Essay-ኩም ጸሓፉ. ስጉምቲ 3: ናይ ምኽሪ ደብዳቤ ቀዲምኩም ሕተቱ. ስጉምቲ 4: Financial Aid ሂደቱ ተረዱ. ስጉምቲ 5: ናይ ንጥፈት ዝርዝርኩም ስርሑ.
+
+ዝዳለዉ ከምኡ ዘይዳለዉ ተምሃሮ ኣብ መንጎ ዘሎ ፍልልይ ብዛዕባ ብልሒ ፈጺሙ ኣይኮነን። ብዛዕባ ሓበሬታ ከምኡ ጊዜ ኢዩ።`
+  },
+  {
+    id:2, title:'Writing Your College Personal Statement',
+    category:'College Prep', author:'Haleluya Tesfamariam', date:'Oct 2025',
+    excerpt:"Your personal statement is the most personal thing you will submit. Here is how to write one that actually sounds like you.",
+    views:99, published:true, featured:true,
+    content_en:`Understanding the Purpose
+
+Admissions officers want to get to know you as a person. They read thousands of essays, and they are looking for authenticity, insight, and a sense of who you will be on their campus. They are not looking for perfection.
+
+Choosing Your Topic
+The hardest part is often figuring out what to write about. What matters is not what you write about, but how you write about it. The most compelling essays often focus on small, specific moments that reveal something meaningful about who you are.
+
+Showing, Not Telling
+Instead of telling readers you are compassionate, show them through a specific story. Use concrete details and sensory specifics. What did you see, hear, smell, taste, feel?
+
+Finding Your Voice
+Write the way you actually speak, not the way you think college essays are supposed to sound. Read your essay out loud. If something sounds awkward or like something you would never actually say, change it.
+
+Common Mistakes to Avoid
+Do not write what you think admissions officers want to hear. Do not try to cover too much. Do not rely on cliches. Do not ignore the word limit. Do not forget to answer the prompt.
+
+Your story matters. The experiences that have shaped you, the values you hold, the way you see the world. These things are worth sharing. Trust yourself. You have something valuable to say.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:3, title:'LinkedIn Optimization for High School Students',
+    category:'Academic Success', author:'Haleluya Tesfamariam', date:'Oct 2025',
+    excerpt:"As a high school student, you might think LinkedIn is just for adults. Starting your professional network early can open doors you didn't even know existed.",
+    views:236, published:true, featured:true,
+    content_en:`Getting Started with Your Profile
+
+Your profile picture is your first impression. Choose a clear, friendly photo. Your headline should go beyond "Student at School." Try something like "High School Junior | Aspiring Engineer | Robotics Team Captain."
+
+Building Your Summary
+Write in the first person and be genuine. Share what you are interested in, what you are working toward, and what makes you unique. Mention academic interests, extracurricular activities, volunteer work, or future goals.
+
+Showcasing Your Activities
+Add your extracurricular activities like work experience. Include debate team, student government, sports, volunteer work. Describe your role and specific achievements.
+
+Making Connections
+Start by connecting with people you know: teachers, counselors, coaches, and family friends. Write a brief, personalized message when you send connection requests.
+
+Professional Communication
+When you message people on LinkedIn, be respectful and professional. If you are reaching out for advice or an informational interview, be clear about what you are asking and why.
+
+Looking Ahead
+Building your LinkedIn presence now sets you up for success later. When you are ready to apply for internships or jobs, you will already have a professional online presence. Start with the basics and build from there.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:4, title:'EEUAE: The Mission',
+    category:'Academic Success', author:'Haleluya Tesfamariam', date:'Oct 2025',
+    excerpt:'Our inaugural post on effective study habits, time management, and leveraging your cultural background for academic success.',
+    views:205, published:true, featured:true,
+    content_en:`The Start of Something Ours
+
+The Eritrean Ethiopian Union for Academic Excellence (EEUAE) was created to make success more accessible for students like us. We are a student-led community focused on connection, guidance, and growth through education and mentorship.
+
+For too long, many of us have had to figure out the academic system on our own. Information is scattered, opportunities are hard to find, and support often comes only after we need it. EEUAE exists to change that.
+
+What We Are Building
+
+Academic Resources: Scholarship Database, SAT/ACT Prep Materials, AP Prep Guides, and a College Application Breakdown written in English, Amharic, and Tigrinya.
+
+Professional Growth: Our Internship Database helps students find real opportunities. Coming soon: Resume and Cover Letter Templates, a Free Resume Editing Service, and LinkedIn Optimization Workshops in all three languages.
+
+Language Learning: English, Amharic, and Tigrinya learning playlists to help students strengthen communication skills while staying close to their culture.
+
+Publication Co.
+EEUAE's Publication Co. is where student voices come to life. Every week, we publish a new article written by students. We post a Writer Spotlight on our Instagram page every week.
+
+Competitions and Scholarships
+We are developing competitions and scholarships that highlight excellence within our own community. From pitch and STEM challenges to writing awards, each program is supported by sponsors who believe in our mission.
+
+EEUAE is just getting started. Every new resource, project, and event we create comes from collaboration: students helping students and communities lifting each other up.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:5, title:'ED, EA, REA, and RD: Which Application Round Is Right for You?',
+    category:'College Prep', author:'EEUAE Editorial Team', date:'Apr 2026',
+    excerpt:'Four application rounds. Very different rules. Here is how to choose the right one for your situation.',
+    views:2, published:true, featured:false,
+    content_en:`If you are a junior or rising senior, you have probably heard "apply early," but do you know what that actually means? There are four main application rounds: Early Decision (ED), Early Action (EA), Restrictive Early Action (REA), and Regular Decision (RD). Each has different rules, deadlines, and impact on your chances.
+
+Early Decision (ED)
+Deadline: Typically November 1 to 15 | Decision: December | Binding: YES
+ED means if you are accepted, you are obligated to attend. You withdraw all other applications. Many selective schools give significant preference to ED applicants.
+
+Warning: Because ED is binding, it can be risky if you need to compare financial aid offers.
+
+Early Action (EA)
+Deadline: Typically November 1 to 15 | Decision: December to February | Binding: NO
+EA means you apply early and hear back early, but you are not committed. You can still apply elsewhere and compare offers before May 1.
+
+Restrictive Early Action (REA) / Single-Choice Early Action (SCEA)
+REA schools (Harvard, Yale, Princeton, Stanford) typically prohibit applying to other private schools ED or EA. You can still apply to public universities EA.
+
+Regular Decision (RD)
+Deadline: Typically January 1 to 15 | Decision: March to April | Binding: NO
+RD gives you full flexibility to compare aid packages and apply wherever you want. However, spots at many schools are already filled after ED and EA rounds.
+
+For First-Generation Students: EA is often the best strategy. You hear back early without sacrificing the ability to compare financial aid packages.`,
+    content_am:`ED, EA, REA, እና RD: ለምን ዓይነት Application Round ነህ?
+
+Early Decision (ED): ቃልኪዳን ያለበት ቀደምት ውሳኔ. Early Action (EA): ቃልኪዳን የሌለበት ቀደምት ዘዴ. REA: Elite ትምህርት ቤቶች ብቻ. Regular Decision (RD): ሙሉ ነፃነት ያለበት መደበኛ ዘዴ.
+
+EA ብዙ ጊዜ first-gen ተማሪዎች ስትራቴጂ ነው. ቀደም ብሎ ምላሽ ታገኛለህ ግን aid packages ማወዳደር አትሳናም።`,
+    content_ti:`ናይ ቅድሚ ምእታው Round ምምራጽ
+
+ED: ቃል ምእሳር ዘለዎ | EA: ቃል ምእሳር የብሉን | REA: Elite ቤትትምህርቲ ጥራሕ | RD: ሙሉእ ናጽነት ዘለዎ
+
+EA ብዙሓት ጊዜ ናይ first-gen ተምሃሮ ዝበለጸ strategy ኢዩ።`
+  },
+  {
+    id:6, title:"How to Write a Compelling 'Why Us' College Essay",
+    category:'College Prep', author:'Rahel Mekonnen', date:'Mar 2026',
+    excerpt:"A step-by-step guide to writing a specific, genuine, and compelling 'Why Us' essay that stands out to admissions officers.",
+    views:2, published:true, featured:false,
+    content_en:`The 'Why Us' essay is one of the most important supplements in a college application. Done right, it shows admissions officers you have done your homework and that you genuinely belong at their school.
+
+What Admissions Officers Actually Want
+They are not looking for flattery. Saying "Harvard has amazing professors" tells them nothing. They want specificity. They want to know that you have thought carefully about why this particular school fits your goals, your values, and your curiosity.
+
+Step 1: Do Real Research
+Go beyond the homepage. Look for specific professors whose research excites you, unique programs or labs you cannot find elsewhere, clubs tied to your interests, and academic traditions that appeal to you.
+
+Step 2: Connect Their Offerings to Your Goals
+Every specific thing you mention should connect back to you. Do not just list features. Explain why they matter for your path.
+
+Weak: "Northwestern has a strong journalism program."
+Strong: "Northwestern's Medill School offers a cross-disciplinary journalism track where I could pair storytelling with data science, exactly the combination I want to use to cover economic inequality in East African communities."
+
+Step 3: Be Specific and Uncommon
+Name the professor. Name the course. Name the club. Show that your knowledge of this school goes deeper than the brochure.
+
+Step 4: Show Fit, Not Just Interest
+You are not just excited about the school. The school should be excited about you. Explain what you will bring to the community, not just what you will take from it.
+
+Final Tip: Swap out the school name and see if the essay still makes sense. If it does, you have not been specific enough.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:7, title:'Finding Your First Internship: A Practical Guide for First-Generation Students',
+    category:'Career Development', author:'Sara Gebremedhin', date:'Jan 2026',
+    excerpt:'A practical guide for first-generation Eritrean and Ethiopian students navigating the internship search process with confidence and purpose.',
+    views:343, published:true, featured:false,
+    content_en:`Landing your first internship can feel overwhelming, especially when you are navigating professional spaces that might feel unfamiliar. As first-generation students, many of us did not grow up hearing dinner table conversations about networking events, resume formats, or interview strategies. But that outsider perspective is actually one of our greatest strengths.
+
+Understanding What Employers Really Want
+Companies are looking for students who are curious, willing to learn, and bring fresh perspectives. Your unique background matters more than you think. When you come from a community where perseverance, adaptability, and problem-solving are part of daily life, you already have skills that many employers value.
+
+Start Early
+The internship search process typically begins months before summer. Many companies start posting opportunities as early as September for the following summer.
+
+Build Your Resume From What You Have
+Consider everything you have done. Student organizations, community volunteering, helping your family navigate systems in a new country. These demonstrate leadership, communication, and cultural competency. Being bilingual or multilingual is a valuable professional asset.
+
+Where to Find Opportunities
+Start with your campus career center. Look into programs designed for students from underrepresented backgrounds, like SEO Scholars, Sponsors for Educational Opportunity, and INROADS.
+
+Preparing for Interviews
+Practice the STAR method: Situation, Task, Action, Result. Prepare questions to ask the interviewer. This shows genuine interest.
+
+You Belong Here
+Your background is not a barrier. It is a bridge. You bring perspectives, resilience, and insights that many professional environments desperately need.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:8, title:'5 Scholarship Opportunities You Should Not Miss in 2026',
+    category:'College Prep', author:'EEUAE Editorial Team', date:'Jan 2026',
+    excerpt:'Discover five major scholarship opportunities for 2026, including programs specifically supporting first-generation and African heritage students.',
+    views:2, published:true, featured:false,
+    content_en:`Finding the right scholarships can transform your educational journey. Here are five incredible opportunities specifically relevant to Eritrean and Ethiopian students and students from underrepresented communities.
+
+1. The Dream.US National Scholarship
+Supports undocumented students who came to the U.S. as children. Covers tuition, fees, and books at partner colleges.
+Award: Up to $33,000
+
+2. African Students Scholarship Fund
+Designed specifically for students of African heritage. Values students who maintain connections to their cultural roots.
+Award: $2,500 to $10,000
+
+3. First Generation Scholarship Programs
+Many universities offer dedicated scholarships for first-generation college students, providing both financial support and mentorship.
+Award: Varies by institution
+
+4. UNCF Scholarships
+Many UNCF scholarships are open to students of African descent, including those from Ethiopia and Eritrea. Over 400 different programs.
+Award: $500 to $10,000 and above
+
+5. Jack Kent Cooke Foundation Scholarship
+One of the most generous scholarships available, covering up to $55,000 per year. Highly competitive but worth applying for if you have strong academics and demonstrated financial need.
+Award: Up to $55,000 per year
+
+Tips for Success
+Start early and create a spreadsheet to track all opportunities. Tell your story. Your unique background as an Eritrean or Ethiopian student is valuable. Apply to many. The more you apply, the better your chances.
+
+Every scholarship you do not apply for is a guaranteed no. Your dreams are worth the effort.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:9, title:'Navigating Financial Aid as a First-Gen Student',
+    category:'College Prep', author:'Michael Ghebremichael', date:'Jan 2026',
+    excerpt:'A comprehensive guide to understanding and maximizing financial aid opportunities for first-generation college students.',
+    views:1, published:true, featured:false,
+    content_en:`Start with FAFSA
+The Free Application for Federal Student Aid (FAFSA) is your gateway to federal grants, loans, and work-study programs. File it as early as possible. It opens October 1 of your senior year.
+
+Do Not Overlook the CSS Profile
+Many private colleges require the CSS Profile in addition to FAFSA. It provides a more detailed financial picture. Check every school's requirements.
+
+Understand Your Award Letter
+Not all aid is the same. Grants and scholarships are free money. Loans must be repaid. Work-study requires working for the funds. Know the difference before accepting your package.
+
+Appeal When Necessary
+If your circumstances change or you receive a better offer elsewhere, you can appeal your financial aid package. Many financial aid offices will work with you if you explain your family's situation clearly.
+
+Net Price Calculators
+Use the net price calculator on each school's website before you apply. This gives you a realistic estimate of what you will actually pay, not just the sticker price.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:10, title:'Building Professional Networks in Your Community',
+    category:'Career Development', author:'Rahel Mekonnen', date:'Jan 2026',
+    excerpt:'Practical strategies for building a professional network that can support your career development and open new opportunities.',
+    views:0, published:true, featured:false,
+    content_en:`Start with Your Community
+Connect with Eritrean and Ethiopian professionals in your area. They understand your background and are often eager to help. Do not underestimate the value of shared cultural understanding in a mentorship relationship.
+
+Leverage LinkedIn
+Create a professional profile and engage with content in your field of interest. Comment thoughtfully and share relevant articles. Connect with alumni from your school and with professionals in fields you care about.
+
+Attend Industry Events
+Conferences, workshops, and meetups provide opportunities to meet professionals in person. Prepare two or three thoughtful questions beforehand. After any meeting, send a brief thank-you note within 24 hours.
+
+Conduct Informational Interviews
+Reach out to professionals for 20-minute conversations about their career path. Most people are willing to help students. Come prepared with specific questions and always follow up.
+
+Follow Up and Stay in Touch
+Send thank-you notes after meetings and update your contacts on your progress. Relationships require ongoing effort. Check in periodically, share updates, and look for ways to give back as you grow.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:11, title:'How to Turn an Internship Into a Full-Time Offer',
+    category:'Career Development', author:'Dawit Tesfamariam', date:'Feb 2026',
+    excerpt:'Strategic tips to turn your internship into a full-time job offer, from first impressions to final conversations.',
+    views:1, published:true, featured:false,
+    content_en:`Start Strong
+Your first two weeks set the tone. Show up early, ask thoughtful questions, and learn the team's rhythms. Demonstrating eagerness without being overbearing makes a lasting impression.
+
+Treat It Like a Long Interview
+Every task, meeting, and message is being noticed. Deliver high-quality work consistently, even on small assignments. Attention to detail signals that you take your role seriously.
+
+Build Relationships Across the Team
+Do not limit yourself to your direct manager. Coffee chats with colleagues in other departments show initiative and help you understand the broader organization.
+
+Communicate Your Interest Early
+Around the midpoint of your internship, let your manager know you are interested in returning full-time. This gives them time to advocate for you internally.
+
+Document Your Wins
+Keep a running list of your contributions and their measurable impact. This prepares you for a final review conversation.
+
+Ask for Feedback and Act on It
+Request a mid-internship check-in. Acting on feedback shows maturity and coachability, two qualities employers value highly in new hires.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:12, title:'Balancing Cultural Identity and Campus Life',
+    category:'Student Life', author:'Yonas Habte', date:'Jan 2026',
+    excerpt:'Navigating college life while honoring your Eritrean or Ethiopian heritage and building authentic connections.',
+    views:1, published:true, featured:false,
+    content_en:`Finding your place in college while staying true to your cultural roots can be challenging. Here is how to navigate both worlds.
+
+Join Cultural Organizations
+Seek out Eritrean, Ethiopian, or African student associations on campus. These communities provide cultural connection, a sense of belonging, and peer support from people who understand your background.
+
+Share Your Heritage
+Do not hide your background. Many peers are curious and eager to learn about different cultures. Your perspective adds genuine value to campus conversations and communities.
+
+Create Your Own Traditions
+If cultural organizations do not exist, consider starting one. Many universities actively support student-led initiatives with funding, space, and administrative support.
+
+Communicate with Family
+Help your family understand college life while maintaining connection to home. Regular communication bridges both worlds. It is okay for your identity to grow and evolve and still be deeply rooted.
+
+Be Authentic
+You do not have to choose between being Habesha and being a college student. You can be both, fully and proudly.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:13, title:'The Importance of Representation in Higher Education',
+    category:'Cultural Pride', author:'Semhar Berhane', date:'Jan 2026',
+    excerpt:'Why seeing Eritrean and Ethiopian leaders in education matters and how it shapes future generations.',
+    views:0, published:true, featured:false,
+    content_en:`Seeing people who look like you in positions of success matters more than many realize.
+
+Role Models Shape Aspirations
+When young people see Eritrean and Ethiopian professionals thriving, in medicine, law, engineering, academia, it expands their sense of what is possible. Representation is not symbolic. It is structural.
+
+Mentorship Matters
+Cultural understanding makes mentorship more effective. Mentors who share your background can provide guidance that others might miss: understanding family pressures, code-switching, and the weight of being a first-generation trailblazer.
+
+Breaking Stereotypes
+Representation challenges limiting narratives about who belongs in certain fields or institutions. Every Eritrean or Ethiopian student who walks across a stage challenges a narrative that needed challenging.
+
+Creating Pathways
+When one person succeeds, they create a path for others. They know the way now. They can point the flashlight back. Representation multiplies opportunity over time.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:14, title:'5 Study Strategies That Actually Work for College',
+    category:'Academic Success', author:'Sarah Tesfaye', date:'Jan 2026',
+    excerpt:'Evidence-based study methods that help you work smarter, not harder, and improve academic performance.',
+    views:1, published:true, featured:false,
+    content_en:`1. Spaced Repetition
+Instead of cramming, review material at increasing intervals over time. Review notes today, again in 3 days, then a week later. This helps move information from short-term to long-term memory.
+
+2. Active Recall
+Test yourself regularly instead of just re-reading notes. After reading a section, close your book and try to recall the key concepts. This strengthens neural pathways and reveals gaps in understanding.
+
+3. The Feynman Technique
+Explain concepts in simple terms as if teaching someone who knows nothing about the topic. If you cannot explain it simply, you do not understand it well enough yet.
+
+4. Interleaving
+Mix different subjects or topics in one study session rather than blocking them. This improves problem-solving and forces your brain to make stronger connections between ideas.
+
+5. Sleep and Exercise
+Your brain consolidates memories during sleep. Regular exercise also boosts cognitive function and memory retention. Staying up all night to cram usually does more harm than good.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:15, title:'Beyond Grades: Nurturing Your Academic Journey for Lifelong Growth',
+    category:'Academic Success', author:'Martha Kidane', date:'Dec 2025',
+    excerpt:'Practical academic strategies for Eritrean and Ethiopian youth, focusing on purpose, effective study, building support, and holistic growth.',
+    views:2346, published:true, featured:false,
+    content_en:`The path to academic success for Eritrean and Ethiopian youth, particularly first-generation students and new immigrants, is often paved with unique challenges and incredible opportunities.
+
+Embrace the Power of Purpose
+Many of us come from families who have sacrificed immensely for our educational opportunities. This background is not a burden. It is powerful fuel. Connect your studies to your personal aspirations, your family's dreams, and your community's needs.
+
+Strategic Study: It Is Not Just About Hours
+Active Learning: Highlight key points, take notes in your own words, ask questions. Spaced Repetition: Review material at increasing intervals instead of cramming. Pomodoro Technique: 25 minutes of focused work, then a 5-minute break.
+
+Building Your Academic Support System
+Connect with professors during office hours. Form study groups. Utilize campus resources such as libraries, writing centers, and tutoring. Seek mentorship from upper-year students.
+
+Beyond the Classroom: Holistic Growth
+Effective time management reduces stress and frees up mental space for learning. Prioritize sleep, nutrition, and exercise. Every challenge is an opportunity for growth.
+
+Your academic journey is a marathon, not a sprint. EEUAE stands with you, cheering on every step of your remarkable path.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:16, title:'Navigating Your Academic Journey: Strategies for Success',
+    category:'Academic Success', author:'Martha Kidane', date:'Dec 2025',
+    excerpt:'Practical strategies for Eritrean and Ethiopian youth to excel academically, build a strong future, and embrace their educational journey with confidence.',
+    views:2346, published:true, featured:false,
+    content_en:`Higher education is a transformative experience, especially for first-generation students and new immigrants from Eritrean and Ethiopian communities.
+
+Setting Clear Goals: Your Academic Compass
+Define SMART Goals: Specific, Measurable, Achievable, Relevant, and Time-bound. Instead of "I want to do well in this class," try "I will achieve a B+ or higher in Calculus by reviewing notes daily for one hour." Connect your goals to your purpose: your family, your community, your aspirations.
+
+Mastering Time Management
+Create a study schedule and treat your study time like appointments you cannot miss. Prioritize tasks by what is urgent and important. Break down large tasks into smaller, manageable steps.
+
+Effective Study Techniques
+Active Recall: Test yourself instead of just re-reading. Spaced Repetition: Review at increasing intervals. Elaboration: Connect new information to what you already know. Seek understanding, not just memorization.
+
+Building Your Support Network
+Connect with professors and mentors at office hours. Form study groups. Utilize campus resources. Lean on your community because your Eritrean and Ethiopian community members understand your journey.
+
+Embracing Challenges and Cultivating Resilience
+View setbacks as learning opportunities. Develop a growth mindset. Practice self-compassion. Stay connected to your roots. Your heritage is a source of immense strength and pride.`,
+    content_am:null, content_ti:null
+  },
+  {
+    id:17, title:'Jan 2026 Application Round Guide',
+    category:'College Prep', author:'EEUAE Editorial Team', date:'Jan 2026',
+    excerpt:'Understanding Early Decision, Early Action, and Regular Decision so you can make the right call for your senior year applications.',
+    views:120, published:true, featured:false,
+    content_en:`Four application rounds. Very different rules. Here is a quick reference guide.
+
+Early Decision (ED): Binding commitment. If accepted, you must attend. Best if the school is your unambiguous first choice and your finances are clear.
+
+Early Action (EA): Non-binding. You apply early and get an early response, but you keep your options open. Best for most first-gen students because you can compare financial aid offers.
+
+Restrictive Early Action (REA): Non-binding, but you generally cannot apply EA or ED to other private schools at the same time. Harvard, Yale, Princeton, and Stanford use this.
+
+Regular Decision (RD): The most flexibility. Apply to as many schools as you want. Compare full aid packages. Commit by May 1.
+
+The Bottom Line: If you are a first-gen student and finances matter, EA is usually your safest path. You get the advantages of applying early without locking yourself into a binding commitment before seeing what aid looks like.`,
+    content_am:null, content_ti:null
+  }
+];
+
+const teamMembers = [
+  { name:'Haleluya Tesfamariam', role:'Founder', initials:'HT' },
+  { name:'Sara Berhe', role:'Director of Publications', initials:'SB' },
+  { name:'Robsan Feyissa', role:'Program Manager', initials:'RF' },
+  { name:'Miriam Haile', role:'Community Lead', initials:'MH' },
+  { name:'Yonas Kifle', role:'Tech and Design', initials:'YK' },
+  { name:'Liya Mehari', role:'Outreach Coordinator', initials:'LM' },
+  { name:'Abel Tesfaye', role:'Content Strategist', initials:'AT' },
+  { name:'Meliha Abdo', role:'Research Team', initials:'MA' },
+  { name:'Ammanuel Hankamo', role:'Research Team', initials:'AH' },
+];
+
+const projects = [
+  {
+    title:'Habesha Voices Series', status:'Completed',
+    subtitle:'Community-driven guidance from Eritrean and Ethiopian students navigating higher education.',
+    overview:'A digital outreach initiative addressing common questions Eritrean and Ethiopian students have about the college process, identity, and belonging. We collected frequently asked questions directly from students and shared responses from Eritrean and Ethiopian undergraduates at top universities, medical students, and post-graduate professionals.',
+    impact:'Reached a wide audience of students seeking guidance. Addressed recurring questions about applications, belonging, and identity. Helped normalize uncertainty and reduce isolation among first-gen students.'
+  },
+  {
+    title:'Spring Sprint: First-Gen College Application Bootcamp', status:'Completed',
+    subtitle:'A free spring break intensive helping first-gen juniors prepare for college applications.',
+    overview:'Spring Sprint is a free, 7-day college application preparation program for current juniors who are first-generation, immigrant, or otherwise under-supported. The program focuses on helping students prepare early so they avoid common mistakes that limit admissions and financial aid outcomes during senior year.',
+    impact:'Students gained a clearer understanding of the college application process. Reduced risk of missed deadlines and sequencing errors. Increased readiness heading into senior year.'
+  }
+];
+
+const competitions = [
+  { type:'External Opportunity', title:'Regeneron Science Talent Search', desc:'One of the most prestigious science competitions in the US, open to high school seniors conducting original research.', prize:'Up to $250,000' },
+  { type:'External Opportunity', title:'Davidson Fellows Scholarship', desc:'For students who have completed a significant project in science, technology, mathematics, literature, music, philosophy, or outside the box.', prize:'Up to $50,000' },
+  { type:'External Opportunity', title:'Coca-Cola Scholars Program', desc:'A merit-based scholarship recognizing exceptional high school seniors who lead and serve in their communities.', prize:'$20,000' },
+  { type:'External Opportunity', title:'National Merit Scholarship', desc:'Based on PSAT/NMSQT scores, this scholarship recognizes academically talented students nationwide.', prize:'$2,500 and above' },
+  { type:'External Opportunity', title:'College Board Opportunity Scholarships', desc:'Six different scholarship opportunities for students who complete steps on their college planning journey.', prize:'Up to $40,000' },
+  { type:'EEUAE Coming Soon', title:'EEUAE Writing Award', desc:'A community writing competition for Eritrean and Ethiopian high school students. Essays will be published in Publication Co.', prize:'TBD: sponsored award' },
+  { type:'EEUAE Coming Soon', title:'EEUAE STEM Challenge', desc:'A pitch competition for first-gen students with a science or technology project they want to share with the community.', prize:'TBD: sponsored award' },
+];
+
+// Article images for carousel (Unsplash)
+const articleImages = [
+  'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=720&q=80',
+  'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=720&q=80',
+  'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=720&q=80',
+  'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=720&q=80',
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=720&q=80',
+  'https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=720&q=80',
+];
+
+// ==============================================
+// STATE
+// ==============================================
+let currentFilter = 'all';
+let currentGradeFilter = 'All';
+let allScholarships = [];
+let lastRefreshed = null;
+let refreshTimer = null;
+let activeArticle = null;
+let activeLang = 'en';
+
+// Carousel state
+let carouselIndex = 0;
+let carouselItems = [];
+
+// Orbital state
+let orbitalAngle = 0;
+let orbitalTimer = null;
+let activeNodeId = null;
+
+// ==============================================
+// ROUTING
+// ==============================================
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+  const nb = document.getElementById('nav-' + id);
+  if (nb) nb.classList.add('active');
+  window.scrollTo(0, 0);
+
+  const fab = document.getElementById('scholarship-fab');
+  fab.style.display = id === 'scholarships' ? 'none' : 'flex';
+
+  if (id === 'publications') { renderCarousel(); renderArticles(); }
+  if (id === 'projects') renderProjects();
+  if (id === 'team') renderTeam();
+  if (id === 'home') renderHomeTeam();
+  if (id === 'competitions') renderCompetitions();
+  if (id === 'scholarships') { if (!allScholarships.length) loadScholarships(false); else filterScholarships(); }
+}
+
+// ==============================================
+// CATEGORY HELPERS
+// ==============================================
+function catClass(cat) {
+  const map = { 'College Prep':'cat-college', 'Career Development':'cat-career', 'Academic Success':'cat-academic', 'Student Life':'cat-student', 'Cultural Pride':'cat-cultural' };
+  return map[cat] || 'cat-academic';
+}
+
+// ==============================================
+// GALLERY4 CAROUSEL
+// ==============================================
+function renderCarousel() {
+  carouselItems = articles.filter(a => a.published).slice(0, 6);
+  const track = document.getElementById('carousel-track');
+  const dots = document.getElementById('carousel-dots');
+
+  track.innerHTML = carouselItems.map((a, i) => `
+    <div class="pub-carousel-slide">
+      <div class="pub-carousel-card" onclick="openArticle(${a.id})">
+        <img src="${articleImages[i % articleImages.length]}" alt="${a.title}" loading="lazy">
+        <div class="pub-carousel-overlay"></div>
+        <div class="pub-carousel-content">
+          <span class="pub-carousel-cat">${a.category}</span>
+          <div class="pub-carousel-card-title">${a.title}</div>
+          <div class="pub-carousel-card-desc">${a.excerpt}</div>
+          <div class="pub-carousel-read">${a.author} <span class="arrow">&#8594;</span></div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  dots.innerHTML = carouselItems.map((_, i) =>
+    `<button class="carousel-dot ${i===0?'active':''}" onclick="carouselGoTo(${i})"></button>`
+  ).join('');
+
+  carouselIndex = 0;
+  updateCarousel();
+}
+
+function updateCarousel() {
+  const slideW = window.innerWidth >= 1024 ? 380 : 340;
+  const track = document.getElementById('carousel-track');
+  track.style.transform = `translateX(-${carouselIndex * slideW}px)`;
+
+  document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === carouselIndex));
+  document.getElementById('carousel-prev').disabled = carouselIndex === 0;
+  document.getElementById('carousel-next').disabled = carouselIndex >= carouselItems.length - 1;
+}
+
+function carouselPrev() { if (carouselIndex > 0) { carouselIndex--; updateCarousel(); } }
+function carouselNext() { if (carouselIndex < carouselItems.length - 1) { carouselIndex++; updateCarousel(); } }
+function carouselGoTo(i) { carouselIndex = i; updateCarousel(); }
+
+// ==============================================
+// ARTICLES GRID
+// ==============================================
+function renderArticles() {
+  const search = (document.getElementById('pub-search') || {value:''}).value.toLowerCase();
+  const grid = document.getElementById('articles-grid');
+  const filtered = articles.filter(a =>
+    a.published &&
+    (currentFilter === 'all' || a.category === currentFilter) &&
+    (!search || a.title.toLowerCase().includes(search) || a.author.toLowerCase().includes(search))
+  );
+  if (!filtered.length) { grid.innerHTML = '<div class="no-results">No articles found</div>'; return; }
+  grid.innerHTML = filtered.map(a => `
+    <div class="article-card" onclick="openArticle(${a.id})">
+      <span class="article-cat ${catClass(a.category)}">${a.category}</span>
+      <div class="article-title">${a.title}</div>
+      <div class="article-excerpt">${a.excerpt}</div>
+      <div class="article-meta">
+        <span class="article-author">${a.author}</span>
+        <span style="display:flex;gap:0.6rem;align-items:center">
+          <span style="font-size:0.75rem;color:var(--ink3)">&#128065; ${a.views}</span>
+          <span class="article-date">${a.date}</span>
+        </span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setFilter(btn, cat) {
+  document.querySelectorAll('.filter-chips .chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = cat;
+  renderArticles();
+}
+
+function openArticle(id) {
+  const a = articles.find(x => x.id === id);
+  if (!a) return;
+  activeArticle = a;
+  activeLang = 'en';
+  updateModal(a, 'en');
+  document.getElementById('article-modal').classList.add('open');
+}
+
+function updateModal(a, lang) {
+  document.getElementById('modal-cat').innerHTML = `<span class="article-cat ${catClass(a.category)}">${a.category}</span>`;
+  document.getElementById('modal-title').textContent = a.title;
+  document.getElementById('modal-meta').innerHTML = `<span>&#9998; ${a.author}</span><span>&#128197; ${a.date}</span><span>&#128065; ${a.views} reads</span>`;
+
+  const available = [
+    { code:'en', label:'English', content:a.content_en },
+    { code:'am', label:'\u12a0\u121b\u122d\u129b', content:a.content_am },
+    { code:'ti', label:'\u1275\u130d\u122d\u129b', content:a.content_ti },
+  ].filter(l => l.content);
+
+  const langsEl = document.getElementById('modal-langs');
+  if (available.length > 1) {
+    langsEl.innerHTML = '<span style="font-size:0.78rem;color:var(--ink3);align-self:center;margin-right:0.2rem">Read in:</span>' +
+      available.map(l => `<button class="lang-btn ${l.code===lang?'active':''}" onclick="switchLang('${l.code}')">${l.label}</button>`).join('');
+  } else { langsEl.innerHTML = ''; }
+
+  const content = lang === 'am' ? a.content_am : lang === 'ti' ? a.content_ti : a.content_en;
+  document.getElementById('modal-body').textContent = content || a.content_en;
+}
+
+function switchLang(lang) { if (activeArticle) { activeLang = lang; updateModal(activeArticle, lang); } }
+function closeModal(e) { if (e.target === document.getElementById('article-modal')) document.getElementById('article-modal').classList.remove('open'); }
+
+// ==============================================
+// HOME TEAM GRID (simple cards)
+// ==============================================
+function renderHomeTeam() {
+  const grid = document.getElementById('home-team-grid');
+  if (!grid) return;
+  grid.innerHTML = teamMembers.slice(0, 4).map(m => `
+    <div class="team-card">
+      <div class="team-avatar">${m.initials}</div>
+      <div class="team-name">${m.name}</div>
+      <div class="team-role">${m.role}</div>
+    </div>
+  `).join('');
+}
+
+// ==============================================
+// RADIAL ORBITAL TIMELINE (Team page)
+// ==============================================
+function renderTeam() {
+  const wrap = document.getElementById('orbital-wrap');
+  const list = document.getElementById('team-list');
+
+  // Remove old nodes
+  wrap.querySelectorAll('.orbital-node').forEach(n => n.remove());
+
+  const total = teamMembers.length;
+  const radius = 180;
+
+  teamMembers.forEach((m, i) => {
+    const node = document.createElement('div');
+    node.className = 'orbital-node';
+    node.id = 'node-' + i;
+    node.innerHTML = `<div class="orbital-node-dot">${m.initials}</div><div class="orbital-node-label">${m.name.split(' ')[0]}</div>`;
+    node.onclick = () => activateNode(i);
+    wrap.appendChild(node);
+  });
+
+  list.innerHTML = teamMembers.map((m, i) => `
+    <div class="team-list-item" id="listitem-${i}" onclick="activateNode(${i})">
+      <div class="team-list-avatar">${m.initials}</div>
+      <div>
+        <div class="team-list-name">${m.name}</div>
+        <div class="team-list-role">${m.role}</div>
+      </div>
+    </div>
+  `).join('');
+
+  startOrbital();
+}
+
+function positionNodes(angle) {
+  const total = teamMembers.length;
+  const radius = 180;
+  teamMembers.forEach((_, i) => {
+    const node = document.getElementById('node-' + i);
+    if (!node) return;
+    const deg = ((i / total) * 360 + angle) % 360;
+    const rad = (deg * Math.PI) / 180;
+    const x = radius * Math.cos(rad);
+    const y = radius * Math.sin(rad);
+    const depth = Math.round(50 + 30 * Math.cos(rad));
+    const opacity = Math.max(0.38, Math.min(1, 0.38 + 0.62 * ((1 + Math.sin(rad)) / 2)));
+    node.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+    node.style.zIndex = activeNodeId === i ? 50 : depth;
+    node.style.opacity = activeNodeId === i ? 1 : opacity;
+  });
+}
+
+function startOrbital() {
+  if (orbitalTimer) clearInterval(orbitalTimer);
+  if (activeNodeId !== null) return;
+  orbitalTimer = setInterval(() => {
+    orbitalAngle = (orbitalAngle + 0.25) % 360;
+    positionNodes(orbitalAngle);
+  }, 40);
+}
+
+function stopOrbital() {
+  if (orbitalTimer) { clearInterval(orbitalTimer); orbitalTimer = null; }
+}
+
+function activateNode(i) {
+  if (activeNodeId === i) {
+    // deselect
+    activeNodeId = null;
+    document.querySelectorAll('.orbital-node').forEach(n => { n.classList.remove('active','related'); });
+    document.querySelectorAll('.team-list-item').forEach(n => n.classList.remove('highlighted'));
+    document.getElementById('orbital-card').classList.add('hidden');
+    startOrbital();
+    return;
+  }
+  stopOrbital();
+  activeNodeId = i;
+  const m = teamMembers[i];
+
+  // Focus the selected node to top
+  const total = teamMembers.length;
+  const targetAngle = (i / total) * 360;
+  orbitalAngle = 270 - targetAngle;
+  positionNodes(orbitalAngle);
+
+  document.querySelectorAll('.orbital-node').forEach((n, idx) => {
+    n.classList.toggle('active', idx === i);
+    n.classList.remove('related');
+  });
+  document.querySelectorAll('.team-list-item').forEach((n, idx) => {
+    n.classList.toggle('highlighted', idx === i);
+  });
+
+  document.getElementById('orbital-card-role').textContent = m.role;
+  document.getElementById('orbital-card-name').textContent = m.name;
+  document.getElementById('orbital-card').classList.remove('hidden');
+}
+
+// ==============================================
+// PROJECTS
+// ==============================================
+function renderProjects() {
+  document.getElementById('projects-grid').innerHTML = projects.map(p => `
+    <div class="project-card">
+      <div class="project-status status-${p.status}">${p.status}</div>
+      <div class="project-title">${p.title}</div>
+      <div class="project-sub">${p.subtitle}</div>
+      <div class="project-detail" style="margin-top:0.5rem">${p.overview}</div>
+      <div class="project-detail" style="margin-top:0.75rem"><strong>Impact:</strong> ${p.impact}</div>
+    </div>
+  `).join('');
+}
+
+// ==============================================
+// COMPETITIONS
+// ==============================================
+function renderCompetitions() {
+  document.getElementById('comps-grid').innerHTML = competitions.map(c => `
+    <div class="comp-card">
+      <div class="comp-type">${c.type}</div>
+      <div class="comp-title">${c.title}</div>
+      <div class="comp-desc">${c.desc}</div>
+      <div class="comp-prize">&#128176; ${c.prize}</div>
+    </div>
+  `).join('');
+}
+
+// ==============================================
+// SCHOLARSHIPS
+// ==============================================
+const fallbackScholarships = [
+  { title:'Coca-Cola Scholars Program', description:'One of the most prestigious scholarship programs in the US. Recognizes exceptional high school seniors who demonstrate leadership, service, and academic achievement.', source:'curated', sourceLabel:'EEUAE Curated', grade:'12th', amount:'$20,000', link:'https://www.coca-colascholarsfoundation.org/apply/', date:'2025-10-01' },
+  { title:'Davidson Fellows Scholarship', description:'For students who have completed a significant project in science, technology, mathematics, literature, music, philosophy, or outside the box. Open to US students 18 and under.', source:'curated', sourceLabel:'EEUAE Curated', grade:'All Grades', amount:'Up to $50,000', link:'https://www.davidsongifted.org/Fellows-Scholarship/', date:'2025-02-01' },
+  { title:'National Merit Scholarship Program', description:'A nationwide competition for recognition and college undergraduate scholarships. Entry is based on PSAT/NMSQT scores taken in junior year.', source:'curated', sourceLabel:'EEUAE Curated', grade:'11th', amount:'Up to $2,500', link:'https://www.nationalmerit.org/', date:'2025-10-15' },
+  { title:'Regeneron Science Talent Search', description:"The nation's oldest and most prestigious pre-college science and math competition. Finalists receive at least $25,000. Students submit original research.", source:'curated', sourceLabel:'EEUAE Curated', grade:'12th', amount:'Up to $250,000', link:'https://www.societyforscience.org/regeneron-sts/', date:'2025-11-13' },
+  { title:'College Board Opportunity Scholarships', description:'Six scholarship opportunities connected to steps on the college planning journey. No essay required for some steps.', source:'curated', sourceLabel:'EEUAE Curated', grade:'All Grades', amount:'Up to $40,000', link:'https://opportunity.collegeboard.org/', date:'2025-08-01' },
+  { title:'Ron Brown Scholar Program', description:'A highly competitive scholarship for African American high school seniors who demonstrate academic achievement, leadership, service to community, and financial need.', source:'curated', sourceLabel:'EEUAE Curated', grade:'12th', amount:'$10,000/year', link:'https://ronbrown.org/', date:'2026-01-09' },
+  { title:'Gates Scholarship', description:'A highly selective, last-dollar scholarship for exceptional minority students from low-income households. Fully funds the cost to attend any accredited US institution.', source:'curated', sourceLabel:'EEUAE Curated', grade:'12th', amount:'Full cost of attendance', link:'https://www.thegatesscholarship.org/', date:'2025-09-15' },
+  { title:'Jack Kent Cooke Foundation Scholarship', description:'Awards outstanding students from 8th grade through college with the potential to succeed at top universities. Supports high-achieving students with financial need.', source:'curated', sourceLabel:'EEUAE Curated', grade:'11th', amount:'Up to $40,000/year', link:'https://www.jkcf.org/our-scholarships/', date:'2025-10-30' },
+  { title:"QuestBridge National College Match", description:"Connects high-achieving, low-income students with full four-year scholarships to the nation's top colleges. For high school seniors with outstanding academic achievement.", source:"curated", sourceLabel:"EEUAE Curated", grade:"12th", amount:"Full scholarship", link:"https://www.questbridge.org/", date:"2025-09-26" },
+  { title:'Posse Foundation Scholarship', description:'Recruits students with extraordinary academic and leadership potential who may be overlooked by traditional college selection processes.', source:'curated', sourceLabel:'EEUAE Curated', grade:'11th', amount:'Full tuition', link:'https://www.possefoundation.org/', date:'2025-10-01' },
+  { title:'Elks National Foundation Most Valuable Student', description:'Open to graduating high school seniors who are US citizens. Judged on scholarship, leadership, and financial need.', source:'curated', sourceLabel:'EEUAE Curated', grade:'12th', amount:'Up to $12,500/year', link:'https://www.elks.org/scholars/', date:'2025-11-08' },
+  { title:'African Students Scholarship Fund', description:'Designed specifically for students of African heritage. Recognizes academic achievement and community involvement. Values students who maintain connections to their cultural roots.', source:'curated', sourceLabel:'EEUAE Curated', grade:'All Grades', amount:'$2,500 to $10,000', link:'https://www.africaeducation.org/', date:'2025-12-01' },
+];
+
+const RSS_FEEDS = [
+  { url:'https://www.scholarships.com/rss/scholarships.aspx', source:'scholarships', label:'Scholarships.com' },
+  { url:'https://www.fastweb.com/rss/scholarships-news.rss', source:'fastweb', label:'Fastweb' },
+  { url:'https://www.niche.com/blog/category/scholarships/feed/', source:'niche', label:'Niche' },
+];
+
+function extractAmount(text) {
+  if (!text) return null;
+  const m = text.match(/\$[\d,]+/);
+  return m ? m[0] : null;
+}
+
+function inferGrade(text) {
+  if (!text) return 'All Grades';
+  const t = text.toLowerCase();
+  if (t.includes('9th') || t.includes('ninth') || t.includes('grade 9')) return '9th';
+  if (t.includes('10th') || t.includes('tenth') || t.includes('grade 10')) return '10th';
+  if (t.includes('11th') || t.includes('eleventh') || t.includes('junior')) return '11th';
+  if (t.includes('12th') || t.includes('twelfth') || t.includes('senior')) return '12th';
+  return 'All Grades';
+}
+
+async function fetchFeed(f) {
+  try {
+    const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(f.url)}`, { signal: AbortSignal.timeout(8000) });
+    const data = await res.json();
+    if (data.status !== 'ok' || !data.items?.length) return [];
+    return data.items.slice(0, 15).map(item => ({
+      title: item.title || 'Scholarship Opportunity',
+      description: (item.description || item.content || '').replace(/<[^>]+>/g, '').slice(0, 220) + '...',
+      source: f.source, sourceLabel: f.label,
+      grade: inferGrade((item.title || '') + ' ' + (item.description || '')),
+      amount: extractAmount((item.title || '') + ' ' + (item.description || '')),
+      link: item.link || '#',
+      date: item.pubDate || new Date().toISOString(),
+    }));
+  } catch { return []; }
+}
+
+async function loadScholarships(forceRefresh = false) {
+  const grid = document.getElementById('sch-grid');
+  const statusMsg = document.getElementById('sch-status-msg');
+  if (!forceRefresh && allScholarships.length) { filterScholarships(); return; }
+
+  grid.innerHTML = '<div class="sch-loading">Fetching live scholarships<span class="loading-dots"></span></div>';
+  statusMsg.textContent = 'Fetching from 3 sources...';
+
+  let liveSources = 0;
+  const results = [];
+  const fetches = await Promise.allSettled(RSS_FEEDS.map(fetchFeed));
+  fetches.forEach(r => { if (r.status === 'fulfilled' && r.value.length) { results.push(...r.value); liveSources++; } });
+
+  if (results.length < 4) {
+    allScholarships = fallbackScholarships;
+    statusMsg.textContent = `Live feeds unavailable. Showing ${fallbackScholarships.length} curated scholarships.`;
+    document.getElementById('stat-sources').textContent = 'Curated';
+  } else {
+    const seen = new Set();
+    allScholarships = results.filter(s => { const k = s.title.toLowerCase().slice(0,40); if (seen.has(k)) return false; seen.add(k); return true; });
+    statusMsg.textContent = `Live data from ${liveSources} source${liveSources>1?'s':''}`;
+    document.getElementById('stat-sources').textContent = liveSources;
+  }
+
+  lastRefreshed = new Date();
+  document.getElementById('stat-refreshed').textContent = lastRefreshed.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  document.getElementById('stat-total').textContent = allScholarships.length;
+  filterScholarships();
+
+  if (refreshTimer) clearTimeout(refreshTimer);
+  refreshTimer = setTimeout(() => loadScholarships(true), 60*60*1000);
+}
+
+function filterScholarships() {
+  const search = (document.getElementById('sch-search')||{value:''}).value.toLowerCase();
+  const sort = (document.getElementById('sch-sort')||{value:'newest'}).value;
+  const grade = currentGradeFilter;
+  let filtered = allScholarships.filter(s => {
+    const matchSearch = !search || s.title.toLowerCase().includes(search) || (s.description||'').toLowerCase().includes(search);
+    const matchGrade = grade === 'All' || s.grade === 'All Grades' || s.grade === grade;
+    return matchSearch && matchGrade;
+  });
+  if (sort === 'az') filtered.sort((a,b) => a.title.localeCompare(b.title));
+  else filtered.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+  document.getElementById('stat-showing').textContent = filtered.length;
+  const grid = document.getElementById('sch-grid');
+
+  if (!filtered.length) { grid.innerHTML = '<div class="sch-empty">No scholarships match your search. Try clearing filters.</div>'; return; }
+
+  grid.innerHTML = filtered.map(s => {
+    const dateStr = s.date ? new Date(s.date).toLocaleDateString('en-US', {month:'short', year:'numeric'}) : '';
+    return `
+      <div class="sch-card">
+        <div class="sch-badges">
+          <span class="sch-source-badge badge-${s.source}">${s.sourceLabel}</span>
+          ${s.grade ? `<span class="sch-grade-badge">${s.grade}</span>` : ''}
+          ${s.amount ? `<span class="sch-amount-badge">${s.amount}</span>` : ''}
+        </div>
+        <div class="sch-card-title">${s.title}</div>
+        <div class="sch-card-desc">${s.description}</div>
+        <div class="sch-card-footer">
+          <span class="sch-card-date">${dateStr}</span>
+          ${s.link && s.link !== '#' ? `<a class="sch-link" href="${s.link}" target="_blank" rel="noopener">View &#8594;</a>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function setGradeFilter(btn, grade) {
+  document.querySelectorAll('#grade-chips .chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentGradeFilter = grade;
+  filterScholarships();
+}
+
+// ==============================================
+// MISC
+// ==============================================
+function footerSubscribe() {
+  const email = document.getElementById('footer-email').value.trim();
+  if (!email || !email.includes('@')) { showToast('Please enter a valid email'); return; }
+  showToast("You're subscribed! Welcome to EEUAE.");
+  document.getElementById('footer-email').value = '';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Init
+renderHomeTeam();
+</script>
+</body>
+</html>
